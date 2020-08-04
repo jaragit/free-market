@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  prepend_before_action :check_recaptcha, only: [:create]
+  before_action :authenticate_scope!, only: [:confirm_phone, :new_address, :create_address] 
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   layout 'no_menu'
@@ -59,15 +61,31 @@ end
 
   def new_address
     @progress = 3
+    @address = Address.new
   end
 
   def create_address
     @progress = 5
+    @address = Address.new(address_params)
+    unless @address.save!
+      redirect_to users_new_address_path, alert: @address.errors.full_messages
+    end
   end
  
   private
   def after_sign_up_path_for(resource)
     users_confirm_phone_path
+  end
+
+  def address_params
+    params.require(:address).permit(
+      :phone_number,
+      :postal_code,
+      :prefecture_id,
+      :city,
+      :house_number,
+      :building_name,
+      ).merge(user_id: current_user.id)
   end
   # protected
 
