@@ -85,14 +85,14 @@
         %span.required-true
           必須
         %br
-        = f.collection_select :prefecture_id, Prefecture.all, :id , :name, :hoge , :hoge, {include_blank: "---"}, required: true, placeholder: "発送元の地域"
+        = f.collection_select :prefecture_id, Prefecture.all, :id , :name,  {include_blank: "---"}, required: true, placeholder: "発送元の地域"
         .error-field{data:{column_name: "delivery_agency"}}
         %br
-        = f.label :delivery_day, "発送までの日数"
+        = f.label :delivery_days, "発送までの日数"
         %span.required-true
           必須
         %br
-        = f.select :delivery_day, Item.delivery_days.keys, {include_blank: "---"}
+        = f.select :delivery_days, Item.delivery_days.keys, {include_blank: "---"}
         .error-field{data:{column_name: "delivery_days"}}
   .block.horizontal-padding-5
     .input-field
