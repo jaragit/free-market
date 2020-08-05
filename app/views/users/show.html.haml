@@ -6,7 +6,7 @@
         =link_to " " do
           =image_tag "user_noimage.png", class:"mypage-block-header-user__image"
           .mypage-block-header-user__name
-            ユーザー名hoge
+            = current_user.nickname 
           .mypage-block-header-user__rate
             評価：５ 出品数 3
       .mypage-block-tabs
