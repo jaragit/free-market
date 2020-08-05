@@ -6,6 +6,7 @@ class ItemsController < ApplicationController
   
   def new
     @item = Item.new
+    @item.images.build
     render layout: 'no_menu' # レイアウトファイルを指定
   end
 
@@ -19,6 +20,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    @item.images.build
     render layout: 'no_menu' # レイアウトファイル指定
   end
 
