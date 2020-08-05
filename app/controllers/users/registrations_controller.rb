@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  prepend_before_action :check_recaptcha, only: [:create]
+  # prepend_before_action :check_recaptcha, only: [:create]
   before_action :authenticate_scope!, only: [:confirm_phone, :new_address, :create_address] 
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
