@@ -13,11 +13,7 @@ class Item < ApplicationRecord
   validates :price, numericality:{greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
   validates :images, length: { minimum: 1, maximum: 5, message: "の数が不正です" } 
 
-  scope :new_items, -> { order("created_at DESC").limit(4) }
-
-  def self.search_by_categories(categories)
-    return Item.where(category: categories).includes(:images)
-  end
+  
 
   enum condition:{
     "新品、未使用": 0,
@@ -55,4 +51,16 @@ class Item < ApplicationRecord
     "販売中": 0,
     "売り切れ": 1
     }
+
+    scope :new_items, -> { order("created_at DESC").limit(4) }
+
+    def self.search_by_categories(categories)
+      return Item.where(category_id: category_ids).includes(:images)
+    end
+
+    scope :new_items, -> { order("created_at DESC").limit(4) }
+
+    def self.search_by_categories(categories)
+      return Item.where(category: categories).includes(:images)
+    end
 end
