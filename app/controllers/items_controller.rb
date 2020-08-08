@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:index,:show]
-  before_action :set_item, only: [:show, :edit, :update, :destroy] 
+  before_action :set_item, only: [:show, :edit, :update, :destroy,:purchase_confirmation] 
   before_action :user_is_not_seller, only: [:edit, :update, :destroy]
   
   def index
