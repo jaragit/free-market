@@ -79,6 +79,7 @@ class ItemsController < ApplicationController
     redirect_to item_path(@item), notice: "商品を購入しました"
   end
 
+  
   private
 
   def item_params
