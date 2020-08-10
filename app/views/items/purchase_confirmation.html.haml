@@ -23,7 +23,7 @@
     - unless @card
       .font-red
         配送先と支払い方法の入力を完了してください。
-    = link_to "", method: :post do
+    = link_to purchase_item_path(@item), method: :post do
       .button{class: "#{'back-red' if @card}" }
         購入する
 .block.horizontal-padding-25
@@ -44,7 +44,7 @@
   .block__main
     #card-data
       - if @card
-        = @card[:last4]
+        = "************" + @card[:last4]
         %br
         = @card[:exp_month]
         \/
@@ -54,5 +54,5 @@
       - else
         \/
   .block__menu-right
-    = link_to "", data: {turbolinks: false} do
+    = link_to cards_path, data: {turbolinks: false} do
       変更する >
